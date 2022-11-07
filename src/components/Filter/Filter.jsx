@@ -11,7 +11,7 @@ export const Filter = () => {
   return (
     <input
       onChange={hendlerChange}
-      // value={filter}
+      value={filter}
       placeholder="filter"
       type="tel"
       name="filter"

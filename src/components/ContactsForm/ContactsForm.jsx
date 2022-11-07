@@ -9,7 +9,7 @@ export const Form = () => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const hendlerChangeName = event => {
     const { value } = event.target;
@@ -17,14 +17,15 @@ export const Form = () => {
   };
   const hendlerChangeNumber = event => {
     const { value } = event.target;
-    setNumber(value);
+    setPhone(value);
   };
 
   const handelSubmit = event => {
     event.preventDefault();
-    dispatch(phoneSetContact({ id, name, number }));
+
+    dispatch(phoneSetContact({ id, name, phone }));
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -50,10 +51,10 @@ export const Form = () => {
         <input
           onChange={hendlerChangeNumber}
           className={css.input}
-          value={number}
-          placeholder="Number"
+          value={phone}
+          placeholder="Phone"
           type="tel"
-          name="number"
+          name="Phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           // pattern="[\+]\d{3}\s[\(]\d{2}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
