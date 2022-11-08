@@ -1,12 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteContact, fetchContacts } from 'redux/operations';
-// import { initialStateTotal } from './sliceFilter';
+import { addContact, deleteContact, fetchContacts } from 'redux/operations';
 const initialState = {
   contacts: [],
 };
-
-// const initialState = initialStateTotal.contacts;
-// console.log('initialState :', initialState);
 
 const phonebookSlice = createSlice({
   name: 'contacts',
@@ -40,6 +36,18 @@ const phonebookSlice = createSlice({
       state.error = action.payload;
     },
     [deleteContact.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [addContact.pending](state) {
+      state.isLoading = true;
+    },
+    [addContact.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.contacts = [...state.contacts, action.payload];
+    },
+    [addContact.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
     },
